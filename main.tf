@@ -1,19 +1,60 @@
 locals {
-  name          = "my-module"
+  namespace=var.namespace_waiops
+  name          = "ibm-waiops-operator"
   yaml_dir      = "${path.cwd}/.tmp/${local.name}/chart/${local.name}"
-  service_url   = "http://${local.name}.${var.namespace}"
-  values_content = {
-  }
   layer = "services"
-  type  = "base"
+  type  = "operators"
   application_branch = "main"
-  namespace = var.namespace
   layer_config = var.gitops_config[local.layer]
+    values_content = {
+      "ibm-cp4waiops-operator" = {
+        namespace = var.namespace_waiops
+        subscriptions = {
+          ibmwaiops = {
+            name = "ibm-aiops-orchestrator"
+            subscription = {
+              channel = var.channel
+              installPlanApproval = "Automatic"
+              name = "ibm-aiops-orchestrator"
+              source = var.catalog
+              sourceNamespace = var.catalog_namespace
+            }
+          }
+        }
+        infra = {
+          ibmwaiops = {
+            namespace = var.namespace_waiops
+            name = "ibm-infrastructure-automation-operator"
+            subscription = {
+              channel = var.channel
+              installPlanApproval = "Automatic"
+              name = "ibm-infrastructure-automation-operator"
+              source = var.catalog
+              sourceNamespace = var.catalog_namespace
+            }
+          }
+        }
+        event = {
+          namespace = var.namespace_waiops
+          ibmwaiops = {
+            name = "noi"
+            subscription = {
+              channel = var.channel_event_manager
+              installPlanApproval = "Automatic"
+              name = "noi"
+              source = var.catalog
+              sourceNamespace = var.catalog_namespace
+            }
+          }
+        }
+      }
+  }
+  values_file = "values.yaml"
 }
 
 resource null_resource create_yaml {
   provisioner "local-exec" {
-    command = "${path.module}/scripts/create-yaml.sh '${local.name}' '${local.yaml_dir}'"
+    command = "${path.module}/scripts/create-yaml.sh '${local.name}' '${local.yaml_dir}' '${local.values_file}'"
 
     environment = {
       VALUES_CONTENT = yamlencode(local.values_content)
@@ -34,3 +75,5 @@ resource gitops_module module {
   config = yamlencode(var.gitops_config)
   credentials = yamlencode(var.git_credentials)
 }
+
+
