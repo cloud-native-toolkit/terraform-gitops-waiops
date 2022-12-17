@@ -42,3 +42,7 @@ versions:
         moduleRef:
           id: gitops
           output: sealed_secrets_cert
+      - name: catalog
+        moduleRef:
+          id: gitgitops-cp-catalogs
+          output: catalog_ibmoperatorsops
