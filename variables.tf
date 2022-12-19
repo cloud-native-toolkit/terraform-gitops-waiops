@@ -92,3 +92,15 @@ variable "channel" {
   description = "The channel that should be used to deploy the operator"
   default     = "v3.5"
 }
+
+variable "namespace_waiops" {
+  type        = string
+  description = "The namespace where the application should be deployed"
+  default = "aiops"
+}
+
+variable "channel_event_manager" {
+  type        = string
+  description = "The namespace where the application should be deployed"
+  default = "v1.10"
+}
