@@ -1,0 +1,6 @@
+dependencies:
+- name: ibm-mq-operator
+  repository: https://charts.cloudnativetoolkit.dev
+  version: 0.2.4
+digest: sha256:b3af54a39e40b9a5244696ea8b78fcfb795e409508083adcaf4d756febf5c945
+generated: "2022-01-19T11:38:59.033844-06:00"
