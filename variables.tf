@@ -63,11 +63,11 @@ variable "git_credentials" {
   sensitive = true
 }
 
-variable "namespace" {
-  type        = string
-  description = "The namespace where the application should be deployed"
-  default     = "openshift-operators"
-}
+# variable "namespace" {
+#   type        = string
+#   description = "The namespace where the application should be deployed"
+#   default     = "openshift-operators"
+# }
 
 variable "server_name" {
   type        = string
@@ -93,7 +93,7 @@ variable "channel" {
   default     = "v3.5"
 }
 
-variable "namespace_waiops" {
+variable "namespace" {
   type        = string
   description = "The namespace where the application should be deployed"
   default = "aiops"

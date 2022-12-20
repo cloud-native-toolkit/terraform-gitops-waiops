@@ -11,11 +11,11 @@ output "branch" {
   depends_on  = [gitops_module.module]
 }
 
-# output "namespace" {
-#   description = "The namespace where the module will be deployed"
-#   value       = local.namespace
-#   depends_on  = [gitops_module.module]
-# }
+output "namespace" {
+  description = "The namespace where the module will be deployed"
+  value       = var.namespace
+  depends_on  = [resource.gitops_module.setup_gitops]
+}
 
 output "server_name" {
   description = "The server where the module will be deployed"

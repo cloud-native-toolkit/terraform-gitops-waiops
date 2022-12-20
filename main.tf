@@ -7,7 +7,7 @@ locals {
   layer_config = var.gitops_config[local.layer]
     values_content = {
       "ibm-cp4waiops-operator" = {
-        namespace = var.namespace_waiops
+        namespace = var.namespace
         subscriptions = {
           ibmwaiops = {
             name = "ibm-aiops-orchestrator"
@@ -22,7 +22,7 @@ locals {
         }
         infra = {
           ibmwaiops = {
-            namespace = var.namespace_waiops
+            namespace = var.namespace
             name = "ibm-infrastructure-automation-operator"
             subscription = {
               channel = var.channel
@@ -34,7 +34,7 @@ locals {
           }
         }
         event = {
-          namespace = var.namespace_waiops
+          namespace = var.namespace
           ibmwaiops = {
             name = "noi"
             subscription = {
