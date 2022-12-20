@@ -63,12 +63,6 @@ variable "git_credentials" {
   sensitive = true
 }
 
-# variable "namespace" {
-#   type        = string
-#   description = "The namespace where the application should be deployed"
-#   default     = "openshift-operators"
-# }
-
 variable "server_name" {
   type        = string
   description = "The name of the server"
