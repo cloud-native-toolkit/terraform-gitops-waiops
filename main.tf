@@ -1,5 +1,5 @@
 locals {
-  name          = "terraform-gitops-waiops"
+  name          = "ibm-waiops-operator"
   yaml_dir      = "${path.cwd}/.tmp/${local.name}/chart/${local.name}"
   layer = "services"
   type  = "operators"
