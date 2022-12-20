@@ -61,7 +61,7 @@ resource null_resource create_yaml {
   }
 }
 
-resource gitops_module module {
+resource gitops_module setup_gitops  {
   depends_on = [null_resource.create_yaml]
 
   name = local.name
