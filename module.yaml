@@ -6,8 +6,6 @@ tags:
   - gitops
 versions:
   - platforms:
-      - kubernetes
-      - ocp3
       - ocp4
     providers:
       - name: gitops
@@ -21,6 +19,10 @@ versions:
         refs:
           - source: github.com/cloud-native-toolkit/terraform-gitops-namespace.git
             version: '>= 1.0.0'
+      - id: catalogs
+        refs:
+          - source: github.com/cloud-native-toolkit/terraform-gitops-cp-catalogs.git
+            version: ">= 1.0.0"
     variables:
       - name: gitops_config
         moduleRef:
@@ -38,7 +40,8 @@ versions:
         moduleRef:
           id: namespace
           output: name
-      - name: kubeseal_cert
+      - name: catalog
         moduleRef:
-          id: gitops
-          output: sealed_secrets_cert
+          id: catalogs
+          output: catalog_ibmoperators
+
